@@ -257,7 +257,7 @@ render_template(In, Out, Vars) ->
     end.
 
 render_opts() ->
-    [{escape_fun, fun(X) -> X end}, {key_type, atom}, {value_serializer, fun(X) -> X end}].
+    [{escape_fun, fun(X) -> X end}, {key_type, atom}, {value_serializer, fun(X) when is_atom(X) -> atom_to_list(X); (X) -> X end}].
 
 rewrite_ports(NodeConfig = #{first_port := FirstPort}) ->
     PortKeys = [K || {K,V} <- maps:to_list(NodeConfig), K =/= first_port, is_port_option(K), is_integer(V)],
