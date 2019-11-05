@@ -351,7 +351,8 @@ filter_out_patterns() ->
      <<"event=outgoing_global_distrib_socket_closed">>,
      <<"event=cannot_delete_personal_data">>,
      <<"event=incoming_global_distrib_socket_closed">>,
-     <<"Supervisor received unexpected message: {'ETS-TRANSFER'">>].
+     <<"Supervisor received unexpected message: {'ETS-TRANSFER'">>,
+     <<"{undef,[{mongoose_rdbms_backend,backend,[],[]}">>]. %% For cassandra preset
 
 mark_as_failed(NodeConfig, Reason, Extra) ->
     NodeConfig#{error => Reason, error_extra => Extra}.
